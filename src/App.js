@@ -3,9 +3,9 @@ import "./App.css";
 import styled from "styled-components";
 import axios from "axios";
 import { countries, colourOptions, colourOptions2 } from "./data";
-import Ant from "./Ant";
-import Searchbar from "./Searchbar";
-import Install from "./Install";
+//import Ant from "./Ant";
+//import Searchbar from "./Searchbar";
+//import Install from "./Install";
 import Trail from "./Trail";
 
 const FormContainer = styled.div`
@@ -24,24 +24,38 @@ const Name = styled.p`
 
 function App() {
   const [values, setValues] = useState([]);
+  const [countriesName, setCountriesName] = useState("");
+
   console.log("values", values);
+
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get("https://restcountries.com/v3.1/all");
-      console.log("res", res);
-      setValues(res.data);
+      console.log("res", res.data);
+      // const nameOnly = res.data?.map((f) => f.name);
+      // console.log("nameOnly", nameOnly);
+      //setValues(res.data);
+      const data = res.data;
+      const options = data.map((f) => ({
+        value: f.name.official,
+        label: f.name.official,
+        flag: f.flag,
+      }));
+      console.log("options", options);
+      setValues(options);
     };
     getData();
   }, []);
 
-  // const filterByName = () => {
-  //   values.map((v) => console.log(" v.name", v.name));
-  // };
-
   const filterColors = (inputValue) => {
-    const filterC = colourOptions.map((c) => c.name);
-    return filterC.filter((i) =>
-      i.offcial.toLowerCase().includes(inputValue.toLowerCase())
+    // const filterC = colourOptions.map((c) => c.name.offcial);
+    // console.log("filterc", filterC);
+    // const names = values?.map((f) => f.name);
+    // console.log("names", names);
+    // const abc = names.filter((i) => i.official);
+    // console.log("abc", abc);
+    return values?.filter((i) =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
 
@@ -53,39 +67,10 @@ function App() {
     });
 
   return (
-    <FormContainer>
-      <Trail promiseOptions={promiseOptions} />
-    </FormContainer>
+    // <FormContainer>
+    <Trail promiseOptions={promiseOptions} values={values} />
+    // </FormContainer>
   );
 }
 
 export default App;
-
-//  <FormContainer>
-//    <Searchbar setOpen={setOpen} onChange={handleChange} />
-//    {open &&
-//         countries?.map((c) => (
-//           <div key={c.countryName}>
-//             <Name>1. {c.countryName}</Name>
-//           </div>
-//         ))}
-//    <input type="text" placeholder="select input" />
-//    <select
-//      name="select1"
-//      id=""
-//      value="select2"
-//      onChange={handleChange}
-//      onClick={() => setOpen(true)}
-//      placeholder="Select"
-//    >
-//      {open &&
-//        filterRobot?.map((c) => (
-//          <option key={c.countryName} value={c.countryName}>
-//            {c.countryName}
-//          </option>
-//        ))}
-//    </select>
-//    <Ant />
-//    <Install />
-//    <Trail />
-//  </FormContainer>;

@@ -29,9 +29,18 @@ export const colourOptions = [
 //     }, 1000);
 //   });
 
-const Trail = ({ promiseOptions }) => {
+const Trail = ({ promiseOptions, values, loadOptions }) => {
+  //console.log("trail value", values);
   return (
-    <AsyncSelect cacheOptions defaultOptions loadOptions={promiseOptions} />
+    <AsyncSelect
+      cacheOptions
+      defaultOptions={values}
+      loadOptions={promiseOptions}
+      // getOptionLabel={(e) => e.official}
+      // getOptionValue={(e) => e.official}
+
+      //loadOptions={loadOptions}
+    />
   );
 };
 

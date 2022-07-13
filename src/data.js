@@ -27,12 +27,12 @@ export const countries = [
 ];
 
 export const colourOptions = [
-  { value: "ocean", name: { offcial: "Australia", name: "aud" } },
-  { value: "blue", name: { offcial: "Japan", name: "jp" } },
-  { value: "purple", name: { offcial: "Korea", name: "kr" } },
-  { value: "red", name: { offcial: " USA,", name: "us" } },
-  { value: "orange", name: { offcial: "Vitenam", name: "vi" } },
-  { value: "yellow", name: { offcial: "Taiwan", name: "aud" } },
+  { value: "ocean", name: { official: "Australia", code: "aud" } },
+  { value: "blue", name: { official: "Japan", code: "jp" } },
+  { value: "purple", name: { official: "Korea", code: "kr" } },
+  { value: "red", name: { official: " USA,", code: "us" } },
+  { value: "orange", name: { official: "Vitenam", code: "vi" } },
+  { value: "yellow", name: { official: "Taiwan", code: "aud" } },
 ];
 
 export const colourOptions2 = [
